@@ -1,16 +1,16 @@
 require "spec_helper"
 
-RSpec.describe Parser do
-  describe 'headers' do
+RSpec.describe BackupEtl::Parser do
+  context 'headers' do
     it 'should return file headers' do
-      parser = Parser.from_file(filepath: fixture_file('parser.csv'))
+      parser = BackupEtl::Parser.from_file(filepath: fixture_file('parser.csv'))
       expect(['ID', 'Created at', 'Status', 'Size', 'Database']).to eq(parser.headers)
     end
   end
 
-  describe 'each' do
+  context 'each' do
     it 'should return an iterator with each row as a hash' do
-      parser = Parser.from_file(filepath: fixture_file('parser.csv'))
+      parser = BackupEtl::Parser.from_file(filepath: fixture_file('parser.csv'))
 
       parser.each do |row|
         expect(row.is_a?(Hash)).to be true
