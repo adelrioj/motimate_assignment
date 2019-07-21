@@ -2,15 +2,12 @@ require 'time'
 
 module BackupEtl
   class Backup
-    attr_reader :id, :created_at, :status, :size, :database
+    attr_reader :id, :created_at
 
     def initialize(id:,
                    created_at_str:)
       @id = id
       @created_at = Time.parse(created_at_str)
-      @status = status
-      @size = size
-      @database = database
     end
 
     def is_older?(days:)
