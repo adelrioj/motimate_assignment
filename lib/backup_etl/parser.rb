@@ -1,4 +1,5 @@
 require 'csv'
+
 module BackupEtl
   class Parser
     class << self
