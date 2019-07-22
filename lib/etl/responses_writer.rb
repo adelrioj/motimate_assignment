@@ -1,6 +1,6 @@
 require 'csv'
 
-module BackupEtl
+module Etl
   class ResponsesWriter
     class << self
       def export(responses:,

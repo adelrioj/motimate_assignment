@@ -1,12 +1,12 @@
 require "spec_helper"
 
-RSpec.describe BackupEtl::BackupRemover do
+RSpec.describe Etl::BackupRemover do
   let(:checker) do
-    BackupEtl::BackupRemover.new(url_str: 'fake_url_str')
+    Etl::BackupRemover.new(url_str: 'fake_url_str')
   end
 
   let(:backup) do
-    BackupEtl::Backup.new(
+    Etl::Dto::Backup.new(
       id: 'an_id',
       created_at: Time.parse('2019-07-10 00:08:02 +0000')
     )
@@ -21,7 +21,7 @@ RSpec.describe BackupEtl::BackupRemover do
 
       response = checker.remove(backup: backup)
 
-      expect(response.is_a?(BackupEtl::Response)).to be true
+      expect(response.is_a?(Etl::Dto::Response)).to be true
       expect(response.id).to eq(backup.id)
       expect(response.created_at).to eq(backup.created_at)
       expect(response.status).to eq('Error')
@@ -37,7 +37,7 @@ RSpec.describe BackupEtl::BackupRemover do
 
       response = checker.remove(backup: backup)
 
-      expect(response.is_a?(BackupEtl::Response)).to be true
+      expect(response.is_a?(Etl::Dto::Response)).to be true
       expect(response.id).to eq(backup.id)
       expect(response.created_at).to eq(backup.created_at)
       expect(response.status).to eq('Removed')

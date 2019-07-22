@@ -1,6 +1,6 @@
 require 'csv'
 
-module BackupEtl
+module Etl
   class Parser
     class << self
       def from_file(filepath:,

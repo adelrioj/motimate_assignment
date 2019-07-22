@@ -1,13 +1,13 @@
 require "spec_helper"
 
-RSpec.describe BackupEtl::Backup do
+RSpec.describe Etl::Dto::Backup do
   context 'is_older?' do
     before(:example) do
       allow(Time).to receive(:now).and_return(Time.parse('2019-07-20 00:00:00 +0000'))
     end
 
     let(:backup) do
-      BackupEtl::Backup.new(
+      Etl::Dto::Backup.new(
         id: 'an_id',
         created_at: Time.parse('2019-07-10 00:08:02 +0000')
       )

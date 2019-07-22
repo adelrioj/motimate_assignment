@@ -1,6 +1,6 @@
 require 'net/http'
 
-module BackupEtl
+module Etl
   class BackupRemover
     def initialize(url_str:)
       @url = url_str
@@ -17,16 +17,17 @@ module BackupEtl
 
     def fetch_status(id)
       url = URI("#{@url}#{id}")
-      Net::HTTP.start(url.host,
-                      url.port,
-                      use_ssl: true
+      Net::HTTP.start(
+        url.host,
+        url.port,
+        use_ssl: true
       ) do |http|
         return http.head(url.path)
       end
     end
 
     def build_error_response(backup, status)
-      BackupEtl::Response.new(
+      Etl::Dto::Response.new(
         id: backup.id,
         created_at: backup.created_at,
         status: 'Error',
@@ -36,7 +37,7 @@ module BackupEtl
     end
 
     def build_ok_response(backup, status)
-      BackupEtl::Response.new(
+      Etl::Dto::Response.new(
         id: backup.id,
         created_at: backup.created_at,
         status: 'Removed',
