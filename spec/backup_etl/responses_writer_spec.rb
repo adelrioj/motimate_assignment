@@ -1,13 +1,13 @@
 require "spec_helper"
 
-RSpec.describe BackupEtl::ResultsWriter do
+RSpec.describe BackupEtl::ResponsesWriter do
   context 'export' do
     before(:example) do
       allow(CSV).to receive(:open).and_yield([])
     end
 
     it 'should export to a csv file' do
-      input = BackupEtl::Result.new(
+      input = BackupEtl::Response.new(
         id: 'an_id',
         created_at: Time.now,
         status: 'a_status',
@@ -15,7 +15,7 @@ RSpec.describe BackupEtl::ResultsWriter do
         error_description: 'an_error_desc'
       )
 
-      output = BackupEtl::ResultsWriter.export(results: [input])
+      output = BackupEtl::ResponsesWriter.export(responses: [input])
 
       expect(output.length).to eq(2)
       expect(output.first).to eq(['ID', 'Created at', 'Status', 'Code', 'ErrorDescription'])

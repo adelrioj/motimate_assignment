@@ -19,7 +19,7 @@ RSpec.describe BackupEtl::BackupRemover do
 
       response = checker.remove(backup: backup)
 
-      expect(response.is_a?(BackupEtl::Result)).to be true
+      expect(response.is_a?(BackupEtl::Response)).to be true
       expect(response.id).to eq(backup.id)
       expect(response.created_at).to eq(backup.created_at)
       expect(response.status).to eq('Error')
@@ -35,7 +35,7 @@ RSpec.describe BackupEtl::BackupRemover do
 
       response = checker.remove(backup: backup)
 
-      expect(response.is_a?(BackupEtl::Result)).to be true
+      expect(response.is_a?(BackupEtl::Response)).to be true
       expect(response.id).to eq(backup.id)
       expect(response.created_at).to eq(backup.created_at)
       expect(response.status).to eq('Removed')

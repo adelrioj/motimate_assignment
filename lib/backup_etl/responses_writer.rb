@@ -1,14 +1,14 @@
 require 'csv'
 
 module BackupEtl
-  class ResultsWriter
+  class ResponsesWriter
     class << self
-      def export(results:,
-                 filepath: 'results.csv',
+      def export(responses:,
+                 filepath: 'responses.csv',
                  config: { col_sep: '  ' })
         CSV.open(filepath, 'wb', config) do |csv|
           csv << headers
-          results.each { |result| csv << result.to_a }
+          responses.each { |response| csv << response.to_a }
           csv
         end
       end

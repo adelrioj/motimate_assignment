@@ -1,5 +1,5 @@
 module BackupEtl
-  class Result
+  class Response
     attr_reader :id, :created_at, :status, :code, :error_description
 
     def initialize(id:,

@@ -8,8 +8,9 @@ module BackupEtl
 
     def remove(backup:)
       status = fetch_status(backup.id)
-      return generate_ok_result(backup, status) if status.is_a?(Net::HTTPOK)
-      generate_error_result(backup, status)
+      return build_ok_response(backup, status) if status.is_a?(Net::HTTPOK)
+
+      build_error_response(backup, status)
     end
 
     private
@@ -24,8 +25,8 @@ module BackupEtl
       end
     end
 
-    def generate_error_result(backup, status)
-      BackupEtl::Result.new(
+    def build_error_response(backup, status)
+      BackupEtl::Response.new(
         id: backup.id,
         created_at: backup.created_at,
         status: 'Error',
@@ -34,8 +35,8 @@ module BackupEtl
       )
     end
 
-    def generate_ok_result(backup, status)
-      BackupEtl::Result.new(
+    def build_ok_response(backup, status)
+      BackupEtl::Response.new(
         id: backup.id,
         created_at: backup.created_at,
         status: 'Removed',
