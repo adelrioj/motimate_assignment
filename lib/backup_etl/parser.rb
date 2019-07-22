@@ -23,6 +23,17 @@ module BackupEtl
       end
     end
 
+    def map
+      reset_file if current_line_number > 0
+
+      result = []
+      @file.each do |line|
+        result << yield(line.to_h) if block_given?
+      end
+
+      result
+    end
+
     def headers
       @file.readline
       @file.headers
