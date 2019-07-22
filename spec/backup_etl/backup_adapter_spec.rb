@@ -1,6 +1,6 @@
 require "spec_helper"
 
-RSpec.describe BackupEtl::Backup do
+RSpec.describe BackupEtl::BackupAdapter do
   context 'build_from backup_row' do
     it 'should create a backup from a row hash' do
       row = {
@@ -8,7 +8,7 @@ RSpec.describe BackupEtl::Backup do
         'Created at' => '2019-07-10 00:08:02 +0000'
       }
 
-      result = BackupEtl::BackupFactory.build_from(backup_row: row)
+      result = BackupEtl::BackupAdapter.build_from(backup_row: row)
 
       expect(result.is_a?(BackupEtl::Backup)).to be true
       expect(result.id).to eq 'an_id'

@@ -1,5 +1,5 @@
 module BackupEtl
-  class BackupFactory
+  class BackupAdapter
     class << self
       def build_from(backup_row:)
         BackupEtl::Backup.new(
