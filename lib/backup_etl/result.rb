@@ -13,5 +13,9 @@ module BackupEtl
       @code = code
       @error_description = error_description
     end
+
+    def to_a
+      [@id, @created_at.to_s, @status, @code, @error_description]
+    end
   end
 end
