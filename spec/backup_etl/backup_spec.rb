@@ -9,7 +9,7 @@ RSpec.describe BackupEtl::Backup do
     let(:backup) do
       BackupEtl::Backup.new(
         id: 'an_id',
-        created_at_str: '2019-07-10 00:08:02 +0000'
+        created_at: Time.parse('2019-07-10 00:08:02 +0000')
       )
     end
 

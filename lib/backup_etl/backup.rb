@@ -5,9 +5,9 @@ module BackupEtl
     attr_reader :id, :created_at
 
     def initialize(id:,
-                   created_at_str:)
+                   created_at:)
       @id = id
-      @created_at = Time.parse(created_at_str)
+      @created_at = created_at
     end
 
     def is_older?(days:)

@@ -5,10 +5,12 @@ RSpec.describe BackupEtl::BackupRemover do
     BackupEtl::BackupRemover.new(url_str: 'fake_url_str')
   end
 
-  let(:backup) { BackupEtl::Backup.new(
-    id: 'an_id',
-    created_at_str: '2019-07-10 00:08:02 +0000'
-  ) }
+  let(:backup) do
+    BackupEtl::Backup.new(
+      id: 'an_id',
+      created_at: Time.parse('2019-07-10 00:08:02 +0000')
+    )
+  end
 
   context 'remove' do
     it 'should be error if check do not return status 200' do
