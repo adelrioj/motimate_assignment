@@ -34,3 +34,27 @@ With the console on project's folder, build the gem from the gemspec:
 After building the gem, install it locally to test it out:
 
 `gem install ./motimate_assignment-0.1.0.gem`
+
+To launch all the test suite:
+
+`rake`
+
+To execute the example script:
+
+`ruby ./example.rb`
+
+## Explanation
+
+This is a simple approach to the problem proposed.
+
+I created it as a gem, as i think it provides a better framework to test and execute than plain code.
+I've separated the possible actions in two, and implemented in two different controller classes:
+
+* The first one, **BackupController**, takes a backup description file with the format specified, 
+calls the proposed API and creates a **responses.csv** file with the result of the operations.
+
+* The second one, **ResponseController**, takes the file created by _BackupController_ and returns a Hash with 
+a count of the different **OK and Error operations**.
+    
+This solution is not production ready, as it has no observability or any kind of logs, 
+and the dependencies are coupled with the code.
