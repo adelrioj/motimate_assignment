@@ -20,6 +20,10 @@ module Etl
           @created_at < interval.end_time
       end
 
+      def error?
+        @status == 'Error'
+      end
+
       def to_a
         [@id, @created_at.to_s, @status, @code, @error_description]
       end

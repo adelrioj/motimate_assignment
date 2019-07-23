@@ -36,4 +36,28 @@ RSpec.describe Etl::Dto::Response do
       expect(response.between?(interval: interval)).to be false
     end
   end
+
+  context 'error?' do
+    it 'should be true if status is Error' do
+      response = Etl::Dto::Response.new(
+        id: 'an_id',
+        created_at: Time.now,
+        status: 'Error',
+        code: 'a_code'
+      )
+
+      expect(response.error?).to be true
+    end
+
+    it 'should be true if status is Error' do
+      response = Etl::Dto::Response.new(
+        id: 'an_id',
+        created_at: Time.now,
+        status: 'not_an_error',
+        code: 'a_code'
+      )
+
+      expect(response.error?).to be false
+    end
+  end
 end
