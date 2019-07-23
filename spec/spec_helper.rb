@@ -1,5 +1,6 @@
 require "bundler/setup"
-require "motimate_assignment"
+require "backup_controller"
+require "response_controller"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
